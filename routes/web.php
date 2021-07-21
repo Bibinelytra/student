@@ -14,5 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
+Route::post('create','studentController@insert');
+Route::get('students-list', 'studentController@studentsList');
+Route::get('edit-student/{id}','studentController@find_by_id');
+Route::get('delete/{id}','studentController@delete');
+Route::post('update','studentController@update');
+
