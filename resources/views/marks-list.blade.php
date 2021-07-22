@@ -184,15 +184,21 @@ td {
 
 <a class="btn btn-primary" href="{{ url('/') }}">Add New Student</a>
 <a class="btn btn-primary" href="{{ url('/add-mark') }}" >Add Mark</a> <br> <br>
+  
 
+  <center><h3><u>Marks List</u></h3></center>
       <table border = "1" width="100%" class="table table-bordered">
 <tr>
 <td>Sl No</td>
 <td>Name</td>
-<td>Age</td>
-<td>Gender</td>
-<td>Reporting Teacher</td>
-<td>Action</td>
+<td>Maths</td>
+<td>Science</td>
+<td>History</td>
+<td>Term</td>
+
+<td>Total</td>
+<td>Created On</td>
+
 </tr>
  
 @php $i = 1; @endphp 
@@ -200,15 +206,16 @@ td {
  
 <tr>
 <td>{{ $i++ }}</td>
-<td>{{ $user->name }}</td>
-<td>{{ $user->age }}</td>
-<td>{{ $user->gender }}</td>
-<td>{{ $user->reporting_teacher }}</td>
-<td>
-   <a href="{{ url('edit-student',  $user->id) }}">Edit</a>
-   <a href="{{ url('delete',  $user->id) }}">Delete</a>
+<td>{{  $user->student_details->name ? $user->student_details->name : '' }}</td>
+<td>{{ $user->maths }}</td>
+<td>{{ $user->science }}</td>
+<td>{{ $user->history }}</td>
+<td>{{ $user->term }}</td>
 
-</td>
+<td>{{ ($user->history)+($user->science)+($user->maths) }}</td>
+<td>{{ $user->created_at->format('M-d-Y h:i A') }}</td>
+
+
 </tr>
 @endforeach
 </table>

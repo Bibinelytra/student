@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use DB;
 use Illuminate\Http\Request;
 use App\Students;
+use App\Mark;
+
 
 class studentController extends Controller
 {
@@ -53,6 +55,37 @@ class studentController extends Controller
             ->where('id', request('id'))
             ->update(['name' => request('name'), 'age' => request('age'), 'gender' => request('gender'), 'reporting_teacher' => request('teacher')]);
                   return redirect('/students-list')->with('alert-success', 'The data updated successfully');
+   	
+        }
+
+
+        public function marksList(){
+            $Students = Mark::all();
+            return view('marks-list')->with('Students', $Students);
+        }
+
+
+         public function add_mark_view(){
+        	$Students = Students::all();
+            return view('add-mark')->with('Students', $Students);
+        }
+     
+
+     public function add_mark(request $request){
+
+        $mark = new Mark();
+
+        $mark->student_id = request('name');
+        $mark->term = request('term');
+        $mark->science = request('science');
+        $mark->maths = request('maths');
+        $mark->history = request('history');
+
+
+
+
+        $mark->save();
+        return redirect('/mark-list')->with('alert-success', 'The data was saved successfully');
    	
         }
 

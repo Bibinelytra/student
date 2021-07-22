@@ -2,8 +2,8 @@
 <html>
 <head>
   <title></title>
-
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+   
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
    
@@ -160,62 +160,78 @@ fieldset {
 :-ms-input-placeholder {
   color: #888;
 }
-
-td {
-    font-size: 16px;
-    font-weight: 500;
-}
    </style>
 
 </head>
 <body>
 
     <div class="container">  
-    <form id="contact"  method="post">
+  <form id="contact" action="{{ url('add-marks') }}" method="post">
+   
 
- @if(session()->has('alert-error'))
+   @if(session()->has('alert-success'))
   
-    <div class="alert alert-warning"> 
+    <div class="alert alert-success"> 
     <a href="#" class="close" data-dismiss="alert" aria-label="close" style="text-decoration: none">&times;</a>
     <i class="fa fa-check"></i> 
-     {{ session()->get('alert-error') }}
+     {{ session()->get('alert-success') }}
   </div>
    @endif
+   
+   <a href="{{ url('students-list') }}" class="btn btn-primary" style="float:right;">View Students</a> <br>
 
-<a class="btn btn-primary" href="{{ url('/') }}">Add New Student</a>
-<a class="btn btn-primary" href="{{ url('/add-mark') }}" >Add Mark</a> <br> <br>
 
-      <table border = "1" width="100%" class="table table-bordered">
-<tr>
-<td>Sl No</td>
-<td>Name</td>
-<td>Age</td>
-<td>Gender</td>
-<td>Reporting Teacher</td>
-<td>Action</td>
-</tr>
- 
-@php $i = 1; @endphp 
-@foreach ($Students as $user)
- 
-<tr>
-<td>{{ $i++ }}</td>
-<td>{{ $user->name }}</td>
-<td>{{ $user->age }}</td>
-<td>{{ $user->gender }}</td>
-<td>{{ $user->reporting_teacher }}</td>
-<td>
-   <a href="{{ url('edit-student',  $user->id) }}">Edit</a>
-   <a href="{{ url('delete',  $user->id) }}">Delete</a>
+    <h3>Update Student Details</h3>
 
-</td>
-</tr>
-@endforeach
-</table>
+@csrf
 
-</form>
+  <label>Student Name</label>
+      <select name="name" style="width: 100%;" class="form-control">
+       @foreach ($Students as $user)
+  
+         <option value="{{ $user->id }}" >{{ $user->name }}<option>
+
+       @endforeach   
+       </select>
+    
+
+
+    <fieldset>
+      <label>Term</label>
+       <select name="term" style="width: 100%;" class="form-control">
+         
+         <option value="One"  >One<option>
+          <option value="Two"  >Two</option>
+       </select>
+    </fieldset>
+   
+   
+
+   <fieldset>
+   <center><h2>Marks</h2></center>
+
+  <label>Maths</label>
+      <input  value="" name="maths" placeholder="Enter mark" type="text" tabindex="1" required autofocus>
+    </fieldset>
+
+   <fieldset>
+    <label>Science</label>
+      <input  value="" name="science" placeholder="Enter mark" type="text" tabindex="1" required autofocus>
+    </fieldset> 
+
+    <fieldset>
+   <label>History</label>
+      <input  value="" name="history" placeholder="Enter mark" type="text" tabindex="1" required autofocus>
+    </fieldset>
+   
+    
+
+    <fieldset>
+      <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
+    </fieldset>
+  
+  </form>
 </div>
-
 
 </body>
 </html>

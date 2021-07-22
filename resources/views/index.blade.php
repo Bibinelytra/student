@@ -4,7 +4,7 @@
   <title></title>
    
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
    
    <style type="text/css">
@@ -197,7 +197,7 @@ fieldset {
 
     <fieldset>
       <label>Gender</label>
-       <select name="gender" style="width: 100%;" class="form-control">
+       <select name="gender" style="width: 100%;" class="form-control" required autofocus>
          <option value="male">Male<option>
           <option value="female">Female</option>
        </select>
@@ -206,7 +206,7 @@ fieldset {
 
     <fieldset>
       <label>Reporting Teacher</label>
-       <select name="teacher"  class="form-control">
+       <select name="teacher"  class="form-control" required autofocus>
          <option value="katy">Katy<option>
           <option value="max">Max</option>
        </select>

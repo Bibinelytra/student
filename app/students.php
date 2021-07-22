@@ -16,7 +16,7 @@ class students extends Model
 
  public function mark()
     {
-    	return $this->belongsTo('App\mark','mark_id');
+    return $this->hasMany('App\Mark', 'student_id');
     }
             
 
